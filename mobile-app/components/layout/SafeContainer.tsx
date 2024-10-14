@@ -6,11 +6,9 @@ type SafeContainerProps = ViewProps & {
     addPadding?: boolean;
 };
 
-export const SafeContainer: React.FC<SafeContainerProps> = ({ children, addPadding = true, ...props }) => {
+export const SafeContainer: React.FC<SafeContainerProps> = ({ children, addPadding = true, className, ...props }) => {
   return (
-    <SafeAreaView {...props} className={clsx([{
-        "p-4": addPadding,
-    }, "flex-1 bg-primary-600"])}>
+    <SafeAreaView {...props} className={clsx([{"p-4": addPadding, className}])}>
       {children}
     </SafeAreaView>
   );
