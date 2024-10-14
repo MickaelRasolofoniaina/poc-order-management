@@ -1,51 +1,51 @@
 export const INIT_DATABASE_SQL = `
     PRAGMA journal_mode = WAL;
     
-    CREATE TABLE IF NOT EXISTS CUSTOMER (
-        CustomerId INTEGER PRIMARY KEY AUTOINCREMENT,
-        CompanyName TEXT,
-        ContactName TEXT,
-        Address TEXT,
-        City TEXT,
-        Region TEXT,
-        PostalCode TEXT,
-        Country TEXT,
-        Phone TEXT
+    CREATE TABLE IF NOT EXISTS customer (
+        customerId INTEGER PRIMARY KEY AUTOINCREMENT,
+        companyName TEXT,
+        contactName TEXT,
+        address TEXT,
+        city TEXT,
+        region TEXT,
+        postalCode TEXT,
+        country TEXT,
+        phone TEXT
     );
 
-    CREATE TABLE IF NOT EXISTS PRODUCT (
-        ProductId INTEGER PRIMARY KEY AUTOINCREMENT,
-        ProductName TEXT NOT NULL,
-        Description TEXT,
-        UnitPrice REAL NOT NULL
+    CREATE TABLE IF NOT EXISTS product (
+        productId INTEGER PRIMARY KEY AUTOINCREMENT,
+        productName TEXT NOT NULL,
+        description TEXT,
+        unitPrice REAL NOT NULL
     );
 
-    CREATE TABLE IF NOT EXISTS "ORDER" (
-        OrderId INTEGER PRIMARY KEY AUTOINCREMENT,
-        CustomerId TEXT NOT NULL,
-        OrderDate TEXT,
-        ShippingDate TEXT,
-        ShippingName TEXT,
-        ShippingAddress TEXT,
-        ShippingCity TEXT,
-        ShippingRegion TEXT,
-        ShippingPostalCode TEXT,
-        ShippingCountry TEXT,
-        ShippingPhone TEXT,
-        FOREIGN KEY (CustomerId) REFERENCES CUSTOMER(CustomerId)
+    CREATE TABLE IF NOT EXISTS "order" (
+        orderId INTEGER PRIMARY KEY AUTOINCREMENT,
+        customerId TEXT NOT NULL,
+        orderDate TEXT,
+        shippingDate TEXT,
+        shippingName TEXT,
+        shippingAddress TEXT,
+        shippingCity TEXT,
+        shippingRegion TEXT,
+        shippingPostalCode TEXT,
+        shippingCountry TEXT,
+        shippingPhone TEXT,
+        FOREIGN KEY (customerId) REFERENCES customer(customerId)
     );
 
-    CREATE TABLE IF NOT EXISTS DETAIL_ORDER (
-        DetailOrderId INTEGER PRIMARY KEY AUTOINCREMENT,
-        OrderId INTEGER NOT NULL,
-        ProductId INTEGER NOT NULL,
-        UnitPrice REAL NOT NULL,
-        Quantity INTEGER NOT NULL,
-        FOREIGN KEY (OrderId) REFERENCES "ORDER"(OrderId),
-        FOREIGN KEY (ProductId) REFERENCES PRODUCT(ProductId)
+    CREATE TABLE IF NOT EXISTS detailOrder (
+        detailOrderId INTEGER PRIMARY KEY AUTOINCREMENT,
+        orderId INTEGER NOT NULL,
+        productId INTEGER NOT NULL,
+        unitPrice REAL NOT NULL,
+        quantity INTEGER NOT NULL,
+        FOREIGN KEY (orderId) REFERENCES "order"(orderId),
+        FOREIGN KEY (productId) REFERENCES product(productId)
     );
 
-    INSERT INTO CUSTOMER (CompanyName,ContactName,Address,City,Region,PostalCode,Country,Phone) VALUES
+    INSERT INTO customer (companyName,contactName,address,city,region,postalCode,country,phone) VALUES
     ('La récrée des petits bouts', 'TAUREAU', '27 rue des fleurs','CHARTRES', 'EURE-ET-LOIR', '28000', 'FR', null),
     ('TARDIEU Antoinette', null, '11 Avenue du coin du bois', 'BOISEMONT','VAL-D OISE', '95000', 'FR', null),
     ('RAVIN Odile', null, '5 rue Mond', 'BOBIGNY', 'SEINE-ST-DENIS', '93000','FR', null),
@@ -55,7 +55,7 @@ export const INIT_DATABASE_SQL = `
     ('LUDO CLUB', 'ROUSSEAU', '13 rue source', 'MOLSHEIM', 'BAS-RHIN', '67120','FR', null),
     ('MOREL', 'MOREL', '128 route Guillon', 'COUBLEVIE', 'ISERE', '38500','FR', null);
 
-    INSERT INTO PRODUCT (ProductName,Description,UnitPrice) VALUES
+    INSERT INTO product (productName,description,unitPrice) VALUES
     ('ANIMATEUR/ANIMATRICE', 'ANIMATEUR/ANIMATRICE POUR LAJOURNEE', 162.00),
     ('ASSISTANT/ASSISTANTE', 'ASSISTANT/ASSISTANTE POUR LA JOURNEE', 62.71),
     ('MAGICIEN', 'MAGICIEN POUR LA JOURNEE', 365.80),

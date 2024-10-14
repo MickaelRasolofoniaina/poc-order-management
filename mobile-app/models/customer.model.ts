@@ -1,11 +1,11 @@
 export interface Customer {
-    customerId: string;
-    companyName: string;
-    contactName: string;
-    address: string;
-    city: string;
-    region: string;
-    postalCode: string;
-    country: string;
-    phone: string;
+  customerId: number;
+  companyName: string | null;
+  contactName: string | null;
+  address: string | null;
+  city: string | null;
+  region: string | null;
+  postalCode: string | null;
+  country: string | null;
+  phone: string | null;
 }

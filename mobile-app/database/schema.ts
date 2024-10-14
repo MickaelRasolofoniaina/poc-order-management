@@ -1,6 +1,6 @@
 import { int, sqliteTable, text } from "drizzle-orm/sqlite-core";
 
-export const customersTable = sqliteTable("CUSTOMER", {
+export const customersTable = sqliteTable("customer", {
   customerId: int().primaryKey({ autoIncrement: true }),
   companyName: text(),
   contactName: text(),
@@ -12,14 +12,14 @@ export const customersTable = sqliteTable("CUSTOMER", {
   phone: text(),
 });
 
-export const productsTable = sqliteTable("PRODUCT", {
+export const productsTable = sqliteTable("product", {
   productId: int().primaryKey({ autoIncrement: true }),
   productName: text().notNull(),
   description: text(),
   unitPrice: int().notNull(),
 });
 
-export const ordersTable = sqliteTable("ORDER", {
+export const ordersTable = sqliteTable("order", {
   orderId: int().primaryKey({ autoIncrement: true }),
   customerId: text()
     .notNull()
@@ -35,7 +35,7 @@ export const ordersTable = sqliteTable("ORDER", {
   shippingPhone: text(),
 });
 
-export const detailOrdersTable = sqliteTable("DETAIL_ORDER", {
+export const detailOrdersTable = sqliteTable("detailOrder", {
   detailOrderId: int().primaryKey({ autoIncrement: true }),
   orderId: int()
     .notNull()
