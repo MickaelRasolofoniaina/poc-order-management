@@ -1,29 +1,44 @@
 import { loadFonts } from "@/constants/fonts";
+import { expoDb } from "@/database/db";
 import { SplashScreen, Stack } from "expo-router";
 import { useEffect, useState } from "react";
+import { ActivityIndicator, View, Text } from "react-native";
+import { useDrizzleStudio } from "expo-drizzle-studio-plugin";
+import { initializeDatabase } from "@/services/db.service";
 
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
-  const [isReady, setIsReady] = useState(false);
+  const [state, setState] = useState<"loading" | "loaded" | "error">("loading");
+
+  useDrizzleStudio(expoDb);
 
   useEffect(() => {
-    async function setup() {
+    async function setupFont() {
+      await loadFonts();
+      await SplashScreen.hideAsync();
       try {
-        await loadFonts();
-        await SplashScreen.hideAsync();
-        setIsReady(true);
+        await initializeDatabase();
+        setState("loaded");
       } catch (error) {
-        setIsReady(false);
+        setState("error");
         console.warn(error);
       }
     }
 
-    setup();
+    setupFont();
   }, []);
 
-  if (!isReady) {
-    return null;
+  if (state === "loading") {
+    return <ActivityIndicator />;
+  }
+
+  if (state === "error") {
+    return (
+      <View>
+        <Text>Error</Text>
+      </View>
+    );
   }
 
   return (
@@ -31,4 +46,6 @@ export default function RootLayout() {
       <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
     </Stack>
   );
+
+  return <View />;
 }
