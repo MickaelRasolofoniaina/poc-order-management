@@ -1,12 +1,8 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [
-    "./app/**/*.{js,jsx,ts,tsx}",
-    "./components/**/*.{js,jsx,ts,tsx}",
-  ],
+  content: ["./app/**/*.{js,jsx,ts,tsx}", "./components/**/*.{js,jsx,ts,tsx}"],
   theme: {
-    extend: {
-    },
+    extend: {},
     colors: {
       primary: {
         100: "#f0f9ff",
@@ -29,9 +25,15 @@ module.exports = {
         700: "#374151",
         800: "#252f3f",
         900: "#161e2e",
-      }
-    }
+      },
+    },
+    fontFamily: {
+      Inter400: "inter-400",
+      Inter500: "inter-500",
+      Inter600: "inter-600",
+      Inter700: "inter-700",
+      Inter800: "inter-800",
+    },
   },
   plugins: [],
-}
-
+};

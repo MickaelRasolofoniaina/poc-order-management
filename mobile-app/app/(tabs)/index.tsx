@@ -1,10 +1,10 @@
-import { SafeContainer } from '@/components/layout/SafeContainer';
-import { Text } from 'react-native';
+import { SafeContainer } from "@/components/layout/SafeContainer";
+import { Title } from "@/components/typography/Title";
 
 export default function HomeScreen() {
   return (
     <SafeContainer>
-      <Text>Hello World!</Text>
+      <Title>Commande</Title>
     </SafeContainer>
   );
 }
