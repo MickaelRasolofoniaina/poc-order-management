@@ -1,4 +1,4 @@
-import { TouchableOpacity, View, Text } from "react-native";
+import { TouchableOpacity, View, Text, ScrollView } from "react-native";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import { Button } from "../button/Button";
 
@@ -12,19 +12,19 @@ export const Modal: React.FC<ModalProps> = ({ children, open, onClose }) => {
   if (!open) return null;
 
   return (
-    <View className="absolute bottom-0 left-0 right-0 top-0 justify-center px-8">
+    <View className="absolute bottom-0 left-0 right-0 top-0 justify-center px-8 py-16">
       <TouchableOpacity
         onPress={onClose}
-        className="bg-black-100 absolute bottom-0 left-0 right-0 top-0 opacity-60"
+        className="absolute bottom-0 left-0 right-0 top-0 bg-black-100 opacity-60"
       />
-      <View className="bg-white-100 rounded-md p-4 pt-[50] opacity-100">
+      <View className="rounded-md bg-white-100 p-4 pt-[50] opacity-100">
         <TouchableOpacity
           onPress={onClose}
           className="absolute right-[10] top-[10]"
         >
           <AntDesign name="closecircleo" size={24} color="red" />
         </TouchableOpacity>
-        {children}
+        <ScrollView showsVerticalScrollIndicator={false}>{children}</ScrollView>
       </View>
     </View>
   );
