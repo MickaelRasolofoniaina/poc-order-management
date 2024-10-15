@@ -5,4 +5,5 @@ export const Colors = TailwindConfig.theme!.colors! as {
   grey: { [key: number]: string };
   green: { [key: number]: string };
   red: { [key: number]: string };
+  blue: { [key: number]: string };
 };

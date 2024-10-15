@@ -14,7 +14,7 @@ const colors = {
   success: "bg-green-100",
   danger: "bg-red-100",
   warning: "bg-red-200",
-  default: "bg-grey-100",
+  default: "bg-blue-100",
 };
 
 export const Button: React.FC<ButtonProps> = ({
@@ -28,7 +28,7 @@ export const Button: React.FC<ButtonProps> = ({
     <TouchableOpacity
       className={clsx([
         colors[variant],
-        "bg-green-100 flex-row items-center justify-center p-4",
+        "flex-row items-center justify-center rounded-md p-4",
         className,
       ])}
       {...props}
