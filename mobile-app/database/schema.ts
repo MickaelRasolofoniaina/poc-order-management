@@ -24,7 +24,7 @@ export const ordersTable = sqliteTable("order", {
   customerId: int()
     .notNull()
     .references(() => customersTable.customerId),
-  orderDate: text(),
+  orderDate: text().notNull(),
   shippingDate: text(),
   shippingName: text(),
   shippingAddress: text(),

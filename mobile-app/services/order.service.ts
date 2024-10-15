@@ -1,7 +1,7 @@
 import { findAllOrders, saveOrder } from "@/repositories/order.repository";
 
 export const getAllOrders = async () => {
-  return findAllOrders();
+  return await findAllOrders();
 };
 
 export const addOrder = async (

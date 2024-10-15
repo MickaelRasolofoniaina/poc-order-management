@@ -135,12 +135,12 @@ export default function Order() {
         </Text>
       )}
       {customer && <CustomerCard customer={customer} />}
+      <Title>Articles</Title>
       <FlatList
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{
           paddingBottom: 50,
         }}
-        ListHeaderComponent={<Title>Articles</Title>}
         data={articles}
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => (

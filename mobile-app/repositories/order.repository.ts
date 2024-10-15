@@ -5,6 +5,7 @@ import {
   ordersTable,
   detailOrdersTable,
 } from "@/database/schema";
+import { OrderData } from "@/models/order.model";
 import { eq } from "drizzle-orm";
 
 type NewOrder = typeof ordersTable.$inferInsert;
@@ -22,7 +23,21 @@ export const findAllOrders = async () => {
       detailOrdersTable,
       eq(ordersTable.orderId, detailOrdersTable.orderId),
     );
-  return data;
+
+  const result = data.reduce<Record<number, OrderData>>((acc, row) => {
+    const customer = row.customer;
+    const order = row.order;
+    const detailOrder = row.detailOrder;
+    if (!acc[order.orderId]) {
+      acc[order.orderId] = { order, customer, detailOrder: [] };
+    }
+    if (detailOrder) {
+      acc[order.orderId].detailOrder.push(detailOrder);
+    }
+    return acc;
+  }, {});
+
+  return result;
 };
 
 export const insertOrder = async (customerId: number, tx: Transaction) => {

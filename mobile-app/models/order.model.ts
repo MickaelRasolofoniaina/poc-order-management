@@ -1,8 +1,10 @@
+import { Customer } from "./customer.model";
+
 export interface Order {
   orderId: number;
   customerId: number;
-  orderDate: Date | null;
-  shippingDate: Date | null;
+  orderDate: string;
+  shippingDate: string | null;
   shippingName: string | null;
   shippingAddress: string | null;
   shippingCity: string | null;
@@ -18,4 +20,10 @@ export interface DetailOrder {
   productId: number;
   unitPrice: number;
   quantity: number;
+}
+
+export interface OrderData {
+  customer: Customer;
+  order: Order;
+  detailOrder: DetailOrder[];
 }
