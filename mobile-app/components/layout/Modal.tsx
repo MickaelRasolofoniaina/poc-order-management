@@ -6,9 +6,15 @@ type ModalProps = {
   children: React.ReactNode;
   open: boolean;
   onClose: () => void;
+  scrollable?: boolean;
 };
 
-export const Modal: React.FC<ModalProps> = ({ children, open, onClose }) => {
+export const Modal: React.FC<ModalProps> = ({
+  children,
+  open,
+  onClose,
+  scrollable = false,
+}) => {
   if (!open) return null;
 
   return (
@@ -24,7 +30,13 @@ export const Modal: React.FC<ModalProps> = ({ children, open, onClose }) => {
         >
           <AntDesign name="closecircleo" size={24} color="red" />
         </TouchableOpacity>
-        <ScrollView showsVerticalScrollIndicator={false}>{children}</ScrollView>
+        {scrollable ? (
+          <ScrollView showsVerticalScrollIndicator={false}>
+            {children}
+          </ScrollView>
+        ) : (
+          children
+        )}
       </View>
     </View>
   );

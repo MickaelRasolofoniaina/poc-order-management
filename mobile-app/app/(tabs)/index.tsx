@@ -81,6 +81,7 @@ export default function HomeScreen() {
         />
       </View>
       <Modal
+        scrollable
         open={selectedOrderId !== -1}
         onClose={() => setSelectedOrderId(-1)}
       >
