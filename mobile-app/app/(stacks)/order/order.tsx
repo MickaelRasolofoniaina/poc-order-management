@@ -59,6 +59,15 @@ export default function Order() {
       </Button>
       <Modal open={openModal} onClose={() => setOpenModal(false)}>
         <DropDownPicker
+          searchable
+          searchPlaceholder="Rechercher un produit..."
+          searchContainerStyle={{
+            padding: 16,
+          }}
+          searchTextInputStyle={{
+            padding: 16,
+            borderWidth: 0,
+          }}
           open={openDropdown}
           value={value}
           items={products}
@@ -67,6 +76,7 @@ export default function Order() {
           setItems={setProducts}
           style={{ marginBottom: 20, borderColor: Colors.black[100] }}
           textStyle={{ color: Colors.black[100] }}
+          placeholder="Chosir un produit"
         />
         <KeyboardAvoidingView>
           <Input
