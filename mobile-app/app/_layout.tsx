@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { ActivityIndicator, View, Text } from "react-native";
 import { useDrizzleStudio } from "expo-drizzle-studio-plugin";
 import { initializeDatabase } from "@/services/db.service";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -42,14 +43,14 @@ export default function RootLayout() {
   }
 
   return (
-    <Stack
-      screenOptions={{
-        headerBackTitleVisible: false,
-      }}
-    >
-      <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-    </Stack>
+    <GestureHandlerRootView>
+      <Stack
+        screenOptions={{
+          headerBackTitleVisible: false,
+        }}
+      >
+        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+      </Stack>
+    </GestureHandlerRootView>
   );
-
-  return <View />;
 }
