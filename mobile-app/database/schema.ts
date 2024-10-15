@@ -21,7 +21,7 @@ export const productsTable = sqliteTable("product", {
 
 export const ordersTable = sqliteTable("order", {
   orderId: int().primaryKey({ autoIncrement: true }),
-  customerId: text()
+  customerId: int()
     .notNull()
     .references(() => customersTable.customerId),
   orderDate: text(),

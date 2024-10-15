@@ -1,7 +1,7 @@
 import { Container } from "@/components/layout/Container";
 import { Title } from "@/components/typography/Title";
 import { useFetch } from "@/hooks/useFetch";
-import { Stack, useLocalSearchParams } from "expo-router";
+import { router, Stack, useLocalSearchParams } from "expo-router";
 import { getCustomerById } from "@/services/customer.service";
 import { CustomerCard } from "@/components/card/CustomerCard";
 import {
@@ -10,6 +10,7 @@ import {
   View,
   FlatList,
   Platform,
+  ActivityIndicator,
 } from "react-native";
 import { Button } from "@/components/button/Button";
 import AntDesign from "@expo/vector-icons/AntDesign";
@@ -20,6 +21,7 @@ import { ConfirmationModal, Modal } from "@/components/layout/Modal";
 import DropDownPicker from "react-native-dropdown-picker";
 import { Colors } from "@/constants/colors";
 import { Product } from "@/models/product.model";
+import { addOrder } from "@/services/order.service";
 
 type Article = {
   id: number;
@@ -32,6 +34,7 @@ type Article = {
 export default function Order() {
   const { customerId } = useLocalSearchParams<{ customerId: string }>();
 
+  const [loading, setLoading] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   const [openConfirmationModal, setOpenConfirmationModal] = useState(false);
   const [openDropdown, setOpenDropdown] = useState(false);
@@ -83,8 +86,21 @@ export default function Order() {
     }
   };
 
-  const onOrderConfirmation = () => {
-    alert("Commande validée");
+  const onOrderConfirmation = async () => {
+    try {
+      if (customer) {
+        setOpenConfirmationModal(false);
+        setLoading(true);
+        await addOrder(customer.customerId, articles);
+        router.navigate("/");
+      }
+    } catch (error) {
+      alert(
+        "Oups! Une erreur s'est produite lors de la validation de la commande",
+      );
+    } finally {
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
@@ -98,6 +114,16 @@ export default function Order() {
     }
     getProducts();
   }, []);
+
+  if (loading) {
+    return (
+      <ActivityIndicator
+        size="large"
+        className="flex-1"
+        color={Colors.blue[100]}
+      />
+    );
+  }
 
   return (
     <Container>
@@ -118,7 +144,7 @@ export default function Order() {
         data={articles}
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => (
-          <View className="bg-white-100 mb-4 rounded-md p-4">
+          <View className="mb-4 rounded-md bg-white-100 p-4">
             <Text className="mb-1">
               <Text className="font-Inter700">Produit: </Text>
               {item.productName}

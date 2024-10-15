@@ -1,6 +1,8 @@
-import { type ViewProps, View } from "react-native";
+import { type ViewProps, ActivityIndicator, View } from "react-native";
 import clsx from "clsx";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { Colors } from "@/constants/colors";
+import { Stack } from "expo-router";
 
 type ContainerProps = ViewProps & {
   addPadding?: boolean;

@@ -1,6 +1,6 @@
 export interface Order {
   orderId: number;
-  customerId: string;
+  customerId: number;
   orderDate: Date | null;
   shippingDate: Date | null;
   shippingName: string | null;
@@ -15,7 +15,7 @@ export interface Order {
 export interface DetailOrder {
   detailOrderId: number;
   orderId: number;
-  productId: string;
+  productId: number;
   unitPrice: number;
   quantity: number;
 }
