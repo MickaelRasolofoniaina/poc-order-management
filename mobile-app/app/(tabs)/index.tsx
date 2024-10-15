@@ -37,18 +37,23 @@ export default function HomeScreen() {
         data={orders}
         keyExtractor={(item) => item.order.orderId.toString()}
         renderItem={({ item }) => (
-          <View className="mb-4 rounded-md bg-white-100 p-4">
-            <Text className="mb-2">
-              <Text className="font-Inter700">ID:</Text> {item.order.orderId}
-            </Text>
-            <Text className="mb-2">
-              <Text className="font-Inter700">Client:</Text>{" "}
-              {item.customer.companyName}
-            </Text>
-            <Text className="mb-2">
-              <Text className="font-Inter700">Date:</Text>{" "}
-              {new Date(item.order.orderDate).toLocaleDateString()}
-            </Text>
+          <View className="mb-4 flex-row rounded-md bg-white-100 p-4">
+            <View>
+              <Text className="mb-2">
+                <Text className="font-Inter700">ID:</Text> {item.order.orderId}
+              </Text>
+              <Text className="mb-2">
+                <Text className="font-Inter700">Client:</Text>{" "}
+                {item.customer.companyName}
+              </Text>
+              <Text className="mb-2">
+                <Text className="font-Inter700">Date:</Text>{" "}
+                {new Date(item.order.orderDate).toLocaleDateString()}
+              </Text>
+            </View>
+            {/* <TouchableOpacity>
+
+            </TouchableOpacity> */}
           </View>
         )}
         ListEmptyComponent={

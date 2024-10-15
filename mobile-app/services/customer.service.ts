@@ -7,6 +7,6 @@ export const getAllCustomers = async () => {
   return await findAllCustomers();
 };
 
-export const getCustomerById = async (customerId: number) => {
+export const getCustomerById = async (customerId: string) => {
   return await findCustomerById(customerId);
 };

@@ -5,8 +5,8 @@ export const getAllOrders = async () => {
 };
 
 export const addOrder = async (
-  customerId: number,
-  articles: { productId: number; unitPrice: number; quantity: number }[],
+  customerId: string,
+  articles: { productId: string; unitPrice: number; quantity: number }[],
 ) => {
   return await saveOrder(customerId, articles);
 };

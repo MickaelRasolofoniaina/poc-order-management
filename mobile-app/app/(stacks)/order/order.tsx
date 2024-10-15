@@ -25,7 +25,7 @@ import { addOrder } from "@/services/order.service";
 
 type Article = {
   id: number;
-  productId: number;
+  productId: string;
   productName: string;
   unitPrice: number;
   quantity: number;
@@ -47,7 +47,7 @@ export default function Order() {
   const [articles, setArticles] = useState<Article[]>([]);
 
   const { data: customer, state: customerState } = useFetch(() =>
-    getCustomerById(parseInt(customerId)),
+    getCustomerById(customerId),
   );
 
   const closeModal = () => {
@@ -60,7 +60,7 @@ export default function Order() {
     if (!selectedProduct) return;
 
     const alreadyAddedArticle = articles.find(
-      (a) => a.productId === parseInt(selectedProduct),
+      (a) => a.productId === selectedProduct,
     );
 
     if (alreadyAddedArticle) {
@@ -68,9 +68,7 @@ export default function Order() {
       return;
     }
 
-    const product = products.find(
-      (p) => p.productId === parseInt(selectedProduct),
-    );
+    const product = products.find((p) => p.productId === selectedProduct);
 
     if (product) {
       const article: Article = {

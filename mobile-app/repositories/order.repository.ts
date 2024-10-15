@@ -40,7 +40,7 @@ export const findAllOrders = async () => {
   return result;
 };
 
-export const insertOrder = async (customerId: number, tx: Transaction) => {
+export const insertOrder = async (customerId: string, tx: Transaction) => {
   const order: NewOrder = {
     customerId,
     orderDate: new Date().toISOString(),
@@ -53,7 +53,7 @@ export const insertOrder = async (customerId: number, tx: Transaction) => {
 export const insertOrderDetail = async (
   orderId: number,
   detailOrder: {
-    productId: number;
+    productId: string;
     unitPrice: number;
     quantity: number;
   }[],
@@ -72,9 +72,9 @@ export const insertOrderDetail = async (
 };
 
 export const saveOrder = async (
-  customerId: number,
+  customerId: string,
   detailOrder: {
-    productId: number;
+    productId: string;
     unitPrice: number;
     quantity: number;
   }[],

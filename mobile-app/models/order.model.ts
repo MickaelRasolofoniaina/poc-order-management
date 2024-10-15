@@ -2,7 +2,7 @@ import { Customer } from "./customer.model";
 
 export interface Order {
   orderId: number;
-  customerId: number;
+  customerId: string;
   orderDate: string;
   shippingDate: string | null;
   shippingName: string | null;
@@ -17,7 +17,7 @@ export interface Order {
 export interface DetailOrder {
   detailOrderId: number;
   orderId: number;
-  productId: number;
+  productId: string;
   unitPrice: number;
   quantity: number;
 }

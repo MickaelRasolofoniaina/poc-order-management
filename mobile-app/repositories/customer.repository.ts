@@ -7,7 +7,7 @@ export const findAllCustomers = async () => {
   return data;
 };
 
-export const findCustomerById = async (customerId: number) => {
+export const findCustomerById = async (customerId: string) => {
   const data = await drizzleDb
     .select()
     .from(customersTable)
