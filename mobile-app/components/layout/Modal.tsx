@@ -1,5 +1,6 @@
-import { TouchableOpacity, View } from "react-native";
+import { TouchableOpacity, View, Text } from "react-native";
 import AntDesign from "@expo/vector-icons/AntDesign";
+import { Button } from "../button/Button";
 
 type ModalProps = {
   children: React.ReactNode;
@@ -26,5 +27,34 @@ export const Modal: React.FC<ModalProps> = ({ children, open, onClose }) => {
         {children}
       </View>
     </View>
+  );
+};
+
+export const ConfirmationModal: React.FC<{
+  message: string;
+  open: boolean;
+  onClose: () => void;
+  onConfirm: () => void;
+}> = ({ message, open, onClose, onConfirm }) => {
+  return (
+    <Modal open={open} onClose={onClose}>
+      <Text className="mb-4 text-center font-Inter600 text-base">
+        {message}
+      </Text>
+      <View className="flex-row gap-2">
+        <Button
+          label="Confirmer"
+          onPress={onConfirm}
+          variant="success"
+          className="flex-1"
+        />
+        <Button
+          label="Annuler"
+          onPress={onClose}
+          variant="danger"
+          className="flex-1"
+        />
+      </View>
+    </Modal>
   );
 };

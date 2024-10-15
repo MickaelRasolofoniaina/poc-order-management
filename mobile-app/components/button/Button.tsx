@@ -22,12 +22,16 @@ export const Button: React.FC<ButtonProps> = ({
   label,
   children,
   className,
+  disabled = false,
   ...props
 }) => {
   return (
     <TouchableOpacity
       className={clsx([
         colors[variant],
+        {
+          "opacity-50": disabled,
+        },
         "flex-row items-center justify-center rounded-md p-4",
         className,
       ])}
