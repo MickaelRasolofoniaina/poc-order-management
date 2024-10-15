@@ -3,7 +3,9 @@ import { Title } from "@/components/typography/Title";
 import { useEffect, useState } from "react";
 import { getAllCustomers } from "@/services/customer.service";
 import { Customer } from "@/models/customer.model";
-import { FlatList } from "react-native";
+import { FlatList, View } from "react-native";
+import { AddButton } from "@/components/button/Fab";
+import { router } from "expo-router";
 
 export default function HomeScreen() {
   const [customers, setCustomers] = useState<Customer[]>([]);
@@ -29,6 +31,13 @@ export default function HomeScreen() {
           </Title>
         )}
       />
+      <View className="absolute bottom-[64] right-[16]">
+        <AddButton
+          onPress={() => {
+            router.push("/order/customer");
+          }}
+        />
+      </View>
     </SafeContainer>
   );
 }

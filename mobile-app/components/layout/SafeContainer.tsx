@@ -3,12 +3,20 @@ import clsx from "clsx";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 type SafeContainerProps = ViewProps & {
-    addPadding?: boolean;
+  addPadding?: boolean;
 };
 
-export const SafeContainer: React.FC<SafeContainerProps> = ({ children, addPadding = true, className, ...props }) => {
+export const SafeContainer: React.FC<SafeContainerProps> = ({
+  children,
+  addPadding = true,
+  className,
+  ...props
+}) => {
   return (
-    <SafeAreaView {...props} className={clsx([{"p-4": addPadding, className}])}>
+    <SafeAreaView
+      {...props}
+      className={clsx([{ "p-4": addPadding, className }], "flex-1")}
+    >
       {children}
     </SafeAreaView>
   );
