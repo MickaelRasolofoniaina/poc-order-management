@@ -1,4 +1,4 @@
-import { SafeContainer } from "@/components/layout/SafeContainer";
+import { SafeContainer } from "@/components/layout/Container";
 import { Title } from "@/components/typography/Title";
 import { useEffect, useState } from "react";
 import { getAllCustomers } from "@/services/customer.service";

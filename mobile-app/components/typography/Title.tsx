@@ -4,7 +4,7 @@ export type TitleProps = TextProps;
 
 export const Title: React.FC<TitleProps> = ({ children, style, ...props }) => {
   return (
-    <Text className="font-Inter600 mb-4 text-2xl" {...props}>
+    <Text className="mb-4 font-Inter600 text-lg" {...props}>
       {children}
     </Text>
   );

@@ -1,6 +1,8 @@
 import TailwindConfig from "../tailwind.config";
 
 export const Colors = TailwindConfig.theme!.colors! as {
-    primary: {[key: number] : string},
-    secondary: {[key: number] : string}
+  black: { [key: number]: string };
+  grey: { [key: number]: string };
+  green: { [key: number]: string };
+  red: { [key: number]: string };
 };
