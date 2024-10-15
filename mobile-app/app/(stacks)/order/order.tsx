@@ -2,34 +2,43 @@ import { Container } from "@/components/layout/Container";
 import { Title } from "@/components/typography/Title";
 import { useFetch } from "@/hooks/useFetch";
 import { Stack, useLocalSearchParams } from "expo-router";
-import { Customer } from "@/models/customer.model";
 import { getCustomerById } from "@/services/customer.service";
 import { CustomerCard } from "@/components/card/CustomerCard";
-import {
-  Text,
-  View,
-  TouchableOpacity,
-  KeyboardAvoidingView,
-} from "react-native";
+import { Text, KeyboardAvoidingView, View } from "react-native";
 import { Button } from "@/components/button/Button";
 import AntDesign from "@expo/vector-icons/AntDesign";
-import { useCallback, useMemo, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { getAllProducts } from "@/services/product.service";
 import { Input } from "@/components/form/Input";
 import { Modal } from "@/components/layout/Modal";
+import DropDownPicker from "react-native-dropdown-picker";
+import { Colors } from "@/constants/colors";
 
 export default function Order() {
   const { customerId } = useLocalSearchParams<{ customerId: string }>();
 
   const [openModal, setOpenModal] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState(false);
+  const [value, setValue] = useState(null);
 
   const { data: customer, state: customerState } = useFetch(() =>
     getCustomerById(parseInt(customerId)),
   );
 
-  const { data: products, state: productState } = useFetch(() =>
-    getAllProducts(),
+  const [products, setProducts] = useState<{ label: string; value: string }[]>(
+    [],
   );
+
+  useEffect(() => {
+    async function getProducts() {
+      const products = await getAllProducts();
+      const productOptions = products.map((p) => {
+        return { label: p.productName, value: p.productId.toString() };
+      });
+      setProducts(productOptions);
+    }
+    getProducts();
+  }, []);
 
   return (
     <Container>
@@ -49,13 +58,24 @@ export default function Order() {
         <AntDesign name="pluscircleo" size={24} color="white" />
       </Button>
       <Modal open={openModal} onClose={() => setOpenModal(false)}>
+        <DropDownPicker
+          open={openDropdown}
+          value={value}
+          items={products}
+          setOpen={setOpenDropdown}
+          setValue={setValue}
+          setItems={setProducts}
+          style={{ marginBottom: 20, borderColor: Colors.black[100] }}
+          textStyle={{ color: Colors.black[100] }}
+        />
         <KeyboardAvoidingView>
           <Input
             placeholder="Quantité"
             inputMode="numeric"
             returnKeyType="done"
           />
-          <Button label="Valider" variant="success" />
+          <Button label="Valider" variant="success" className="mb-4" />
+          <Button label="Annuler" variant="danger" />
         </KeyboardAvoidingView>
       </Modal>
     </Container>

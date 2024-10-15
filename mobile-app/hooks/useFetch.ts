@@ -26,6 +26,6 @@ export const useFetch = <T>(fetchMethod: () => Promise<T>) => {
   if (state === "error") {
     return { state };
   } else {
-    return { data: data!, state };
+    return { data: data!, state, setData };
   }
 };

@@ -16,7 +16,7 @@ export const Modal: React.FC<ModalProps> = ({ children, open, onClose }) => {
         onPress={onClose}
         className="bg-black-100 absolute bottom-0 left-0 right-0 top-0 opacity-60"
       />
-      <View className="bg-white-100 min-h-[400] rounded-md p-4 pt-[50] opacity-100">
+      <View className="bg-white-100 rounded-md p-4 pt-[50] opacity-100">
         <TouchableOpacity
           onPress={onClose}
           className="absolute right-[10] top-[10]"
