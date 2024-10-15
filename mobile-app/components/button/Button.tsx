@@ -29,6 +29,7 @@ export const Button: React.FC<ButtonProps> = ({
       className={clsx([
         colors[variant],
         "bg-green-100 flex-row items-center justify-center p-4",
+        className,
       ])}
       {...props}
     >

@@ -1,4 +1,4 @@
-import { SafeContainer } from "@/components/layout/Container";
+import { Container } from "@/components/layout/Container";
 import { Title } from "@/components/typography/Title";
 import { useEffect, useState } from "react";
 import { getAllCustomers } from "@/services/customer.service";
@@ -20,7 +20,7 @@ export default function HomeScreen() {
   }, []);
 
   return (
-    <SafeContainer>
+    <Container safe>
       <Title>Commande</Title>
       <FlatList
         data={customers}
@@ -38,6 +38,6 @@ export default function HomeScreen() {
           }}
         />
       </View>
-    </SafeContainer>
+    </Container>
   );
 }

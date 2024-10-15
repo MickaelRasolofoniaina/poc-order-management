@@ -4,36 +4,23 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 type ContainerProps = ViewProps & {
   addPadding?: boolean;
-};
-
-export const SafeContainer: React.FC<ContainerProps> = ({
-  children,
-  addPadding = true,
-  className,
-  ...props
-}) => {
-  return (
-    <SafeAreaView
-      {...props}
-      className={clsx([{ "p-4": addPadding, className }], "flex-1")}
-    >
-      {children}
-    </SafeAreaView>
-  );
+  safe?: boolean;
 };
 
 export const Container: React.FC<ContainerProps> = ({
   children,
+  safe = false,
   addPadding = true,
   className,
   ...props
 }) => {
+  const Parent = safe ? SafeAreaView : View;
   return (
-    <View
+    <Parent
       {...props}
       className={clsx([{ "p-4": addPadding, className }], "flex-1")}
     >
       {children}
-    </View>
+    </Parent>
   );
 };
