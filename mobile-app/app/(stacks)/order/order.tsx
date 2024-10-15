@@ -4,7 +4,13 @@ import { useFetch } from "@/hooks/useFetch";
 import { Stack, useLocalSearchParams } from "expo-router";
 import { getCustomerById } from "@/services/customer.service";
 import { CustomerCard } from "@/components/card/CustomerCard";
-import { Text, KeyboardAvoidingView, View, FlatList } from "react-native";
+import {
+  Text,
+  KeyboardAvoidingView,
+  View,
+  FlatList,
+  Platform,
+} from "react-native";
 import { Button } from "@/components/button/Button";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import { useEffect, useState } from "react";
@@ -177,7 +183,9 @@ export default function Order() {
           textStyle={{ color: Colors.black[100] }}
           placeholder="Chosir un produit"
         />
-        <KeyboardAvoidingView>
+        <KeyboardAvoidingView
+          behavior={Platform.OS === "ios" ? "padding" : "height"}
+        >
           <Input
             placeholder="Quantité"
             inputMode="numeric"

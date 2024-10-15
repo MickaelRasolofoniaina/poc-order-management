@@ -8,7 +8,7 @@ export type AddButtonProps = {
 export const AddButton: React.FC<AddButtonProps> = ({ onPress }) => {
   return (
     <TouchableOpacity
-      className="bg-green-100 flex h-[60] w-[60] items-center justify-center rounded-full"
+      className="bg-blue-100 flex h-[60] w-[60] items-center justify-center rounded-full"
       onPress={onPress}
     >
       <Entypo name="plus" size={34} color="white" />

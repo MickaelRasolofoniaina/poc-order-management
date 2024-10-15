@@ -23,6 +23,7 @@ export default function HomeScreen() {
     <Container safe>
       <Title>Commande</Title>
       <FlatList
+        showsVerticalScrollIndicator={false}
         data={customers}
         keyExtractor={(item) => item.customerId.toString()}
         renderItem={({ item }) => (
@@ -31,7 +32,7 @@ export default function HomeScreen() {
           </Title>
         )}
       />
-      <View className="absolute bottom-[64] right-[16]">
+      <View className="absolute bottom-[40] right-[16]">
         <AddButton
           onPress={() => {
             router.push("/order/customer");

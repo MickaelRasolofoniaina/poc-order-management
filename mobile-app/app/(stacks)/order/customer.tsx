@@ -21,6 +21,7 @@ export default function Customer() {
       <Stack.Screen options={{ title: "Liste des clients" }} />
       <Title>Choisir le client</Title>
       <FlatList
+        showsVerticalScrollIndicator={false}
         data={customers}
         renderItem={({ item }) => {
           return (
