@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { ActivityIndicator, View, Text } from "react-native";
 import { useDrizzleStudio } from "expo-drizzle-studio-plugin";
 import { initializeDatabase } from "@/services/db.service";
+import { Colors } from "@/constants/colors";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -30,7 +31,13 @@ export default function RootLayout() {
   }, []);
 
   if (state === "loading") {
-    return <ActivityIndicator />;
+    return (
+      <ActivityIndicator
+        size="large"
+        className="flex-1"
+        color={Colors.blue[100]}
+      />
+    );
   }
 
   if (state === "error") {
