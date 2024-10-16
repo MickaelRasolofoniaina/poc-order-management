@@ -1,9 +1,9 @@
 import { loadFonts } from "@/constants/fonts";
-import { expoDb } from "@/database/db";
+//import { expoDb } from "@/database/db";
 import { Stack } from "expo-router";
 import { useEffect, useState } from "react";
 import { ActivityIndicator } from "react-native";
-import { useDrizzleStudio } from "expo-drizzle-studio-plugin";
+//import { useDrizzleStudio } from "expo-drizzle-studio-plugin";
 import { initializeDatabase } from "@/services/db.service";
 import { Colors } from "@/constants/colors";
 import { Error } from "@/components/layout/Error";
@@ -14,7 +14,7 @@ SplashScreen.preventAutoHideAsync();
 export default function RootLayout() {
   const [state, setState] = useState<"loading" | "loaded" | "error">("loading");
 
-  useDrizzleStudio(expoDb);
+  //useDrizzleStudio(expoDb);
 
   useEffect(() => {
     async function setupFont() {
