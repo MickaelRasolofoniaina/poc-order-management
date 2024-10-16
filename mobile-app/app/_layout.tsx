@@ -1,12 +1,13 @@
 import { loadFonts } from "@/constants/fonts";
 import { expoDb } from "@/database/db";
-import { SplashScreen, Stack } from "expo-router";
+import { Stack } from "expo-router";
 import { useEffect, useState } from "react";
-import { ActivityIndicator, View, Text } from "react-native";
+import { ActivityIndicator } from "react-native";
 import { useDrizzleStudio } from "expo-drizzle-studio-plugin";
 import { initializeDatabase } from "@/services/db.service";
 import { Colors } from "@/constants/colors";
 import { Error } from "@/components/layout/Error";
+import * as SplashScreen from "expo-splash-screen";
 
 SplashScreen.preventAutoHideAsync();
 
