@@ -6,6 +6,7 @@ import { ActivityIndicator, View, Text } from "react-native";
 import { useDrizzleStudio } from "expo-drizzle-studio-plugin";
 import { initializeDatabase } from "@/services/db.service";
 import { Colors } from "@/constants/colors";
+import { Error } from "@/components/layout/Error";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -42,9 +43,7 @@ export default function RootLayout() {
 
   if (state === "error") {
     return (
-      <View>
-        <Text>Error</Text>
-      </View>
+      <Error message="Une erreur s'est produite lors de l'initialisation de l'application" />
     );
   }
 
