@@ -20,7 +20,8 @@
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#456EFE"
       },
-      "package": "com.mobileapp.mobileapp"
+      "package": "com.mobileapp.mobileapp",
+      "versionCode": 2
     },
     "web": {
       "bundler": "metro",
